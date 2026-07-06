@@ -3,6 +3,25 @@ import json
 
 assets = []
 
+ASSET_FIELDS = [
+    "hostname",
+    "ip_address",
+    "operating_system",
+    "owner",
+    "location",
+    "status"
+]
+
+
+def print_asset(asset):
+    print("----------------------------------------")
+    print(f"Hostname: {asset['hostname']}")
+    print(f"IP Address: {asset['ip_address']}")
+    print(f"Operating System: {asset['operating_system']}")
+    print(f"Owner: {asset['owner']}")
+    print(f"Location: {asset['location']}")
+    print(f"Status: {asset['status']}")
+
 
 def add_asset():
     print("\n=== Add New Asset ===")
@@ -38,13 +57,7 @@ def show_assets():
 
     for index, asset in enumerate(assets, start=1):
         print(f"\nAsset #{index}")
-        print("----------------------------------------")
-        print(f"Hostname: {asset['hostname']}")
-        print(f"IP Address: {asset['ip_address']}")
-        print(f"Operating System: {asset['operating_system']}")
-        print(f"Owner: {asset['owner']}")
-        print(f"Location: {asset['location']}")
-        print(f"Status: {asset['status']}")
+        print_asset(asset)
 
 
 def search_asset():
@@ -60,13 +73,8 @@ def search_asset():
 
     for asset in assets:
         if search in asset["hostname"].lower():
-            print("\n----------------------------------------")
-            print(f"Hostname: {asset['hostname']}")
-            print(f"IP Address: {asset['ip_address']}")
-            print(f"Operating System: {asset['operating_system']}")
-            print(f"Owner: {asset['owner']}")
-            print(f"Location: {asset['location']}")
-            print(f"Status: {asset['status']}")
+            print()
+            print_asset(asset)
             found = True
 
     if not found:
@@ -150,17 +158,8 @@ def export_assets_to_csv():
         print("No assets found.")
         return
 
-    fieldnames = [
-        "hostname",
-        "ip_address",
-        "operating_system",
-        "owner",
-        "location",
-        "status"
-    ]
-
     with open("inventory.csv", "w", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer = csv.DictWriter(file, fieldnames=ASSET_FIELDS)
 
         writer.writeheader()
         writer.writerows(assets)
@@ -223,52 +222,57 @@ def load_assets():
         assets = []
 
 
-print("=" * 40)
-print("Cloud Asset Inventory")
-print("=" * 40)
+def main():
+    print("=" * 40)
+    print("Cloud Asset Inventory")
+    print("=" * 40)
 
-name = input("Please enter your name: ")
+    name = input("Please enter your name: ")
 
-load_assets()
+    load_assets()
 
-print(f"\nWelcome, {name}!")
+    print(f"\nWelcome, {name}!")
 
-while True:
-    print("\n1. Add Asset")
-    print("2. Show Assets")
-    print("3. Search Asset")
-    print("4. Delete Asset")
-    print("5. Edit Asset")
-    print("6. Export Assets to CSV")
-    print("7. Show Statistics")
-    print("8. Exit")
+    while True:
+        print("\n1. Add Asset")
+        print("2. Show Assets")
+        print("3. Search Asset")
+        print("4. Delete Asset")
+        print("5. Edit Asset")
+        print("6. Export Assets to CSV")
+        print("7. Show Statistics")
+        print("8. Exit")
 
-    choice = input("\nChoose an option: ")
+        choice = input("\nChoose an option: ")
 
-    if choice == "1":
-        add_asset()
+        if choice == "1":
+            add_asset()
 
-    elif choice == "2":
-        show_assets()
+        elif choice == "2":
+            show_assets()
 
-    elif choice == "3":
-        search_asset()
+        elif choice == "3":
+            search_asset()
 
-    elif choice == "4":
-        delete_asset()
+        elif choice == "4":
+            delete_asset()
 
-    elif choice == "5":
-        edit_asset()
+        elif choice == "5":
+            edit_asset()
 
-    elif choice == "6":
-        export_assets_to_csv()
+        elif choice == "6":
+            export_assets_to_csv()
 
-    elif choice == "7":
-        show_statistics()
+        elif choice == "7":
+            show_statistics()
 
-    elif choice == "8":
-        print("\nGoodbye!")
-        break
+        elif choice == "8":
+            print("\nGoodbye!")
+            break
 
-    else:
-        print("\nInvalid option. Please try again.")
+        else:
+            print("\nInvalid option. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
