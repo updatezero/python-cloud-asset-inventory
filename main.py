@@ -46,6 +46,32 @@ def show_assets():
         print(f"Status: {asset['status']}")
 
 
+def search_asset():
+    print("\n=== Search Asset ===")
+
+    if not assets:
+        print("No assets found.")
+        return
+
+    search = input("Enter hostname to search: ").lower()
+
+    found = False
+
+    for asset in assets:
+        if search in asset["hostname"].lower():
+            print("\n----------------------------------------")
+            print(f"Hostname: {asset['hostname']}")
+            print(f"IP Address: {asset['ip_address']}")
+            print(f"Operating System: {asset['operating_system']}")
+            print(f"Owner: {asset['owner']}")
+            print(f"Location: {asset['location']}")
+            print(f"Status: {asset['status']}")
+            found = True
+
+    if not found:
+        print("\nNo matching asset found.")
+
+
 def delete_asset():
     print("\n=== Delete Asset ===")
 
@@ -98,8 +124,9 @@ print(f"\nWelcome, {name}!")
 while True:
     print("\n1. Add Asset")
     print("2. Show Assets")
-    print("3. Delete Asset")
-    print("4. Exit")
+    print("3. Search Asset")
+    print("4. Delete Asset")
+    print("5. Exit")
 
     choice = input("\nChoose an option: ")
 
@@ -110,9 +137,12 @@ while True:
         show_assets()
 
     elif choice == "3":
-        delete_asset()
+        search_asset()
 
     elif choice == "4":
+        delete_asset()
+
+    elif choice == "5":
         print("\nGoodbye!")
         break
 
