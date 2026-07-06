@@ -24,6 +24,15 @@ def add_asset():
 
     assets.append(asset)
     save_assets()
+def load_assets():
+    global assets
+
+    try:
+        with open("inventory.json", "r") as file:
+            assets = json.load(file)
+    
+    except FileNotFoundError:
+        assets = []
 
     print("\nAsset added successfully!")
 
@@ -57,6 +66,7 @@ print("=" * 40)
 name = input("Please enter your name: ")
 
 print(f"\nWelcome, {name}!")
+load_assets()
 
 while True:
     print("\n1. Add Asset")

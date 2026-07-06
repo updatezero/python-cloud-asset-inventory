@@ -6,5 +6,13 @@
         "owner": "Art",
         "location": "switzerland_north",
         "status": "active"
+    },
+    {
+        "hostname": "test",
+        "ip_address": "test",
+        "operating_system": "test",
+        "owner": "test",
+        "location": "test",
+        "status": "test"
     }
 ]
