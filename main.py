@@ -95,6 +95,53 @@ def delete_asset():
         print("\nPlease enter a valid number.")
 
 
+def edit_asset():
+    print("\n=== Edit Asset ===")
+
+    if not assets:
+        print("No assets found.")
+        return
+
+    show_assets()
+
+    try:
+        asset_number = int(input("\nEnter asset number to edit: "))
+
+        if 1 <= asset_number <= len(assets):
+            asset = assets[asset_number - 1]
+
+            print("\nPress Enter to keep the current value.")
+
+            hostname = input(f"Hostname [{asset['hostname']}]: ")
+            ip_address = input(f"IP Address [{asset['ip_address']}]: ")
+            operating_system = input(f"Operating System [{asset['operating_system']}]: ")
+            owner = input(f"Owner [{asset['owner']}]: ")
+            location = input(f"Location [{asset['location']}]: ")
+            status = input(f"Status [{asset['status']}]: ")
+
+            if hostname:
+                asset["hostname"] = hostname
+            if ip_address:
+                asset["ip_address"] = ip_address
+            if operating_system:
+                asset["operating_system"] = operating_system
+            if owner:
+                asset["owner"] = owner
+            if location:
+                asset["location"] = location
+            if status:
+                asset["status"] = status
+
+            save_assets()
+
+            print(f"\nUpdated asset: {asset['hostname']}")
+        else:
+            print("\nInvalid asset number.")
+
+    except ValueError:
+        print("\nPlease enter a valid number.")
+
+
 def save_assets():
     with open("inventory.json", "w") as file:
         json.dump(assets, file, indent=4)
@@ -126,7 +173,8 @@ while True:
     print("2. Show Assets")
     print("3. Search Asset")
     print("4. Delete Asset")
-    print("5. Exit")
+    print("5. Edit Asset")
+    print("6. Exit")
 
     choice = input("\nChoose an option: ")
 
@@ -143,6 +191,9 @@ while True:
         delete_asset()
 
     elif choice == "5":
+        edit_asset()
+
+    elif choice == "6":
         print("\nGoodbye!")
         break
 
