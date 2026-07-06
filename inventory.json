@@ -1,0 +1,10 @@
+[
+    {
+        "hostname": "VM_LAB01_Art",
+        "ip_address": "10.10.10.10",
+        "operating_system": "Linux",
+        "owner": "Art",
+        "location": "switzerland_north",
+        "status": "active"
+    }
+]
