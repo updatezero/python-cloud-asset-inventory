@@ -1,24 +1,33 @@
+assets = []
+
 def add_asset():
     print("\n=== Add New Asset ===")
 
     hostname = input("Please enter the hostname: ")
     ip_address = input("Please enter the IP address: ")
     operating_system = input("Please enter the operating system: ")
-    owner = input("Please enter the the owner: ")
+    owner = input("Please enter the owner: ")
     location = input("Please enter the location: ")
     status = input("Please enter the status (active/inactive): ")
 
-    print("\nAsset Information")
-    print(f"Hostname: {hostname}")
-    print(f"IP Address: {ip_address}")
-    print(f"Operating System: {operating_system}")
-    print(f"Owner: {owner}")
-    print(f"Location: {location}")
-    print(f"Status: {status}")
+    asset = {
+        "hostname": hostname,
+        "ip_address": ip_address,
+        "operating_system": operating_system,
+        "owner": owner,
+        "location": location,
+        "status": status
+    }
 
+    assets.append(asset)
 
+    print("\nAsset added successfully!")
 
-
+def show_assets():
+    print("\n=== Stored Assets ===")
+    
+    for asset in assets:
+        print(asset)
 
 print("=" * 40)
 print("Cloud Asset Inventory")
@@ -27,12 +36,20 @@ print("=" * 40)
 name = input("Please enter your name: ")
 
 print(f"\nWelcome, {name}!")
-print("\n1. Add Asset")
-print("2. Show Assets")
-print("3. Exit")
-choice = input("\nChoose an option: ")
 
-if choice == "1":
-    add_asset()
+while True:
+    print("\n1. Add Asset")
+    print("2. Show Assets")
+    print("3. Exit")
+
+    choice = input("\nChoose an option: ")
+
+    if choice == "1":
+        add_asset()
     
+    if choice == "2":
+        show_assets()
 
+    if choice =="3":
+        print("\nGoodbye!")
+        break
