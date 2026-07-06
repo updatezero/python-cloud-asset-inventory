@@ -1,3 +1,4 @@
+import csv
 import json
 
 assets = []
@@ -142,6 +143,31 @@ def edit_asset():
         print("\nPlease enter a valid number.")
 
 
+def export_assets_to_csv():
+    print("\n=== Export Assets to CSV ===")
+
+    if not assets:
+        print("No assets found.")
+        return
+
+    fieldnames = [
+        "hostname",
+        "ip_address",
+        "operating_system",
+        "owner",
+        "location",
+        "status"
+    ]
+
+    with open("inventory.csv", "w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+        writer.writeheader()
+        writer.writerows(assets)
+
+    print("\nAssets exported successfully to inventory.csv")
+
+
 def save_assets():
     with open("inventory.json", "w") as file:
         json.dump(assets, file, indent=4)
@@ -174,7 +200,8 @@ while True:
     print("3. Search Asset")
     print("4. Delete Asset")
     print("5. Edit Asset")
-    print("6. Exit")
+    print("6. Export Assets to CSV")
+    print("7. Exit")
 
     choice = input("\nChoose an option: ")
 
@@ -194,6 +221,9 @@ while True:
         edit_asset()
 
     elif choice == "6":
+        export_assets_to_csv()
+
+    elif choice == "7":
         print("\nGoodbye!")
         break
 
