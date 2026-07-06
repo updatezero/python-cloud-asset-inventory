@@ -8,11 +8,19 @@
         "status": "active"
     },
     {
-        "hostname": "test",
-        "ip_address": "test",
-        "operating_system": "test",
-        "owner": "test",
-        "location": "test",
-        "status": "test"
+        "hostname": "Asset1",
+        "ip_address": "Asset1",
+        "operating_system": "Asset1",
+        "owner": "Asset1",
+        "location": "Asset1",
+        "status": "Asset1"
+    },
+    {
+        "hostname": "Asset2",
+        "ip_address": "Asset2",
+        "operating_system": "Asset2",
+        "owner": "Asset2",
+        "location": "Asset2",
+        "status": "Asset2"
     }
 ]

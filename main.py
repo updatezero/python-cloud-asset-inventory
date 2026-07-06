@@ -24,15 +24,6 @@ def add_asset():
 
     assets.append(asset)
     save_assets()
-def load_assets():
-    global assets
-
-    try:
-        with open("inventory.json", "r") as file:
-            assets = json.load(file)
-    
-    except FileNotFoundError:
-        assets = []
 
     print("\nAsset added successfully!")
 
@@ -44,7 +35,8 @@ def show_assets():
         print("No assets found.")
         return
 
-    for asset in assets:
+    for index, asset in enumerate(assets, start=1):
+        print(f"\nAsset #{index}")
         print("----------------------------------------")
         print(f"Hostname: {asset['hostname']}")
         print(f"IP Address: {asset['ip_address']}")
@@ -54,9 +46,43 @@ def show_assets():
         print(f"Status: {asset['status']}")
 
 
+def delete_asset():
+    print("\n=== Delete Asset ===")
+
+    if not assets:
+        print("No assets found.")
+        return
+
+    show_assets()
+
+    try:
+        asset_number = int(input("\nEnter asset number to delete: "))
+
+        if 1 <= asset_number <= len(assets):
+            deleted_asset = assets.pop(asset_number - 1)
+            save_assets()
+            print(f"\nDeleted asset: {deleted_asset['hostname']}")
+        else:
+            print("\nInvalid asset number.")
+
+    except ValueError:
+        print("\nPlease enter a valid number.")
+
+
 def save_assets():
     with open("inventory.json", "w") as file:
         json.dump(assets, file, indent=4)
+
+
+def load_assets():
+    global assets
+
+    try:
+        with open("inventory.json", "r") as file:
+            assets = json.load(file)
+
+    except FileNotFoundError:
+        assets = []
 
 
 print("=" * 40)
@@ -65,13 +91,15 @@ print("=" * 40)
 
 name = input("Please enter your name: ")
 
-print(f"\nWelcome, {name}!")
 load_assets()
+
+print(f"\nWelcome, {name}!")
 
 while True:
     print("\n1. Add Asset")
     print("2. Show Assets")
-    print("3. Exit")
+    print("3. Delete Asset")
+    print("4. Exit")
 
     choice = input("\nChoose an option: ")
 
@@ -82,6 +110,9 @@ while True:
         show_assets()
 
     elif choice == "3":
+        delete_asset()
+
+    elif choice == "4":
         print("\nGoodbye!")
         break
 
