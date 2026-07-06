@@ -168,6 +168,45 @@ def export_assets_to_csv():
     print("\nAssets exported successfully to inventory.csv")
 
 
+def show_statistics():
+    print("\n=== Inventory Statistics ===")
+
+    if not assets:
+        print("No assets found.")
+        return
+
+    total_assets = len(assets)
+    linux_assets = 0
+    windows_assets = 0
+    active_assets = 0
+    inactive_assets = 0
+
+    for asset in assets:
+        operating_system = asset["operating_system"].lower()
+        status = asset["status"].lower()
+
+        if "linux" in operating_system:
+            linux_assets += 1
+        elif "windows" in operating_system:
+            windows_assets += 1
+
+        if status == "active":
+            active_assets += 1
+        elif status == "inactive":
+            inactive_assets += 1
+
+    other_os_assets = total_assets - linux_assets - windows_assets
+    other_status_assets = total_assets - active_assets - inactive_assets
+
+    print(f"Total Assets: {total_assets}")
+    print(f"Linux: {linux_assets}")
+    print(f"Windows: {windows_assets}")
+    print(f"Other OS: {other_os_assets}")
+    print(f"Active: {active_assets}")
+    print(f"Inactive: {inactive_assets}")
+    print(f"Other Status: {other_status_assets}")
+
+
 def save_assets():
     with open("inventory.json", "w") as file:
         json.dump(assets, file, indent=4)
@@ -201,7 +240,8 @@ while True:
     print("4. Delete Asset")
     print("5. Edit Asset")
     print("6. Export Assets to CSV")
-    print("7. Exit")
+    print("7. Show Statistics")
+    print("8. Exit")
 
     choice = input("\nChoose an option: ")
 
@@ -224,6 +264,9 @@ while True:
         export_assets_to_csv()
 
     elif choice == "7":
+        show_statistics()
+
+    elif choice == "8":
         print("\nGoodbye!")
         break
 
