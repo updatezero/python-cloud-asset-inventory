@@ -1,5 +1,7 @@
 # Python Cloud Asset Inventory
 
+> **In plain English:** This is a digital list-keeper for computers and servers — like a spreadsheet you control from a text-based menu, where you can add, search, edit, and remove entries about the IT equipment an organization uses.
+
 A simple command-line asset inventory tool for cloud and infrastructure environments.
 
 This project is built with Python and focuses on practical automation concepts that are useful for Cloud Engineering, Azure administration, and Cloud Security workflows.
