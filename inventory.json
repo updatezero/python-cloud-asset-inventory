@@ -1,6 +1,6 @@
 [
     {
-        "hostname": "VM_LAB01_Art",
+        "hostname": "vm-lab01-web",
         "ip_address": "10.10.10.10",
         "operating_system": "Linux",
         "owner": "Art",
@@ -8,19 +8,19 @@
         "status": "active"
     },
     {
-        "hostname": "Asset1",
-        "ip_address": "Asset1",
-        "operating_system": "Asset1",
-        "owner": "Asset1",
-        "location": "Asset1",
-        "status": "Asset1"
+        "hostname": "vm-lab01-db",
+        "ip_address": "10.10.10.11",
+        "operating_system": "Linux",
+        "owner": "Art",
+        "location": "switzerland_north",
+        "status": "active"
     },
     {
-        "hostname": "Asset2",
-        "ip_address": "Asset 2-3",
-        "operating_system": "Asset2",
-        "owner": "Asset2",
-        "location": "Asset2",
-        "status": "Asset2"
+        "hostname": "srv-dc01",
+        "ip_address": "192.168.1.10",
+        "operating_system": "Windows Server 2022",
+        "owner": "Art",
+        "location": "on_premises",
+        "status": "inactive"
     }
 ]
