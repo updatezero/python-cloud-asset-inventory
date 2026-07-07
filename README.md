@@ -41,7 +41,7 @@ No external Python packages are required. The project only uses Python standard 
 Clone the repository:
 
 ```bash
-git clone https://github.com/updatezero/python-cloud-asset-inventory.git
+git clone https://github.com/recica/python-cloud-asset-inventory.git
 cd python-cloud-asset-inventory
 ```
 
